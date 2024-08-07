@@ -13,6 +13,9 @@ set(
 	CACHE STRING "The C++ standard to compile with, 14+")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+if(APPLE)
+    set(CMAKE_LINKER_TYPE APPLE_CLASSIC)
+endif()
 
 find_package(
 	OpenMP
