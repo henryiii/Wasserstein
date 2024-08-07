@@ -58,7 +58,7 @@ target_link_libraries(
 	Python::Module
 	Python::NumPy)
 
-foreach(LIB IN LIST OpenMP_CXX_LIBRARIES)
+foreach(LIB IN LISTS OpenMP_CXX_LIBRARIES)
     cmake_path(GET LIB PARENT_PATH LIBPATH)
     set_property(TARGET wasserstein APPEND PROPERTY INSTALL_RPATH LIBPATH)
 endforeach()
