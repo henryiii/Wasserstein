@@ -57,9 +57,12 @@ target_link_libraries(
 	OpenMP::OpenMP_CXX
 	Python::Module
 	Python::NumPy)
-set_target_properties(wasserstein PROPERTIES
-    INSTALL_RPATH "/usr/local/lib"    
-)
+
+foreach(LIB IN LIST OpenMP_CXX_LIBRARIES)
+    cmake_path(GET LIB PARENT_PATH LIBPATH)
+    set_property(TARGET wasserstein APPEND PROPERTY INSTALL_RPATH LIBPATH)
+endforeach()
+ 
 install(TARGETS wasserstein DESTINATION wasserstein/omp)
 
 get_property(support_files TARGET wasserstein PROPERTY SWIG_SUPPORT_FILES)
