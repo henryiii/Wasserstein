@@ -13,9 +13,6 @@ set(
 	CACHE STRING "The C++ standard to compile with, 14+")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-if(APPLE)
-    set(CMAKE_LINKER_TYPE APPLE_CLASSIC)
-endif()
 
 find_package(
 	OpenMP
@@ -60,7 +57,9 @@ target_link_libraries(
 	OpenMP::OpenMP_CXX
 	Python::Module
 	Python::NumPy)
-
+set_target_properties(wasserstein PROPERTIES
+    INSTALL_RPATH "/usr/local/lib"    
+)
 install(TARGETS wasserstein DESTINATION wasserstein/omp)
 
 get_property(support_files TARGET wasserstein PROPERTY SWIG_SUPPORT_FILES)
