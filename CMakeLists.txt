@@ -60,7 +60,7 @@ target_link_libraries(
 
 foreach(LIB IN LISTS OpenMP_CXX_LIBRARIES)
     cmake_path(GET LIB PARENT_PATH LIBPATH)
-    set_property(TARGET wasserstein APPEND PROPERTY INSTALL_RPATH LIBPATH)
+    set_property(TARGET wasserstein APPEND PROPERTY INSTALL_RPATH "${LIBPATH}")
 endforeach()
  
 install(TARGETS wasserstein DESTINATION wasserstein/omp)
